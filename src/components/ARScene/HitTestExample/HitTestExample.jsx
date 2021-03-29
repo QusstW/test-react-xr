@@ -5,7 +5,7 @@ import { Circle } from "@react-three/drei";
 
 
 
-export const HitTestExample = ( {setPosition} ) => {
+export const HitTestExample = ( {setPosition, setClicked} ) => {
   const ref = useResource();
 
   useHitTest((hit) => {
@@ -19,17 +19,13 @@ export const HitTestExample = ( {setPosition} ) => {
   return (
     <Interactive
       onSelect={() => {
-        setPosition([ref.current.position.x, ref.current.position.y, ref.current.position.z]);
+        setPosition([ref.current.position.x, ref.current.position.y, ref.current.position.z])
+        setClicked(true)
       }}
-      onClick={ (e)=>{
-        console.log(e)
-      } }
     >
       <Circle
         ref={ref}
         args={[0.1, 0.1, 0.1]}
-        onClick={() => {
-        }}
       />
     </Interactive>
   )

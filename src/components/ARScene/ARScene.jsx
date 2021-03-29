@@ -6,16 +6,25 @@ import { CompModel } from './Models/CompModel'
 
 
 export const ARScene = () => {
-  const [position, setPosition] = useState();
+  const [position, setPosition] = useState()
+  const [clicked, setClicked] = useState(false)
+
   return (
     <ARCanvas sessionInit={{ requiredFeatures: ["hit-test"] }}>
       <ambientLight intensity={0.5} />
       <pointLight position={[5, 5, 5]} />
-      
-      <Suspense fallback={"F"}>
+      { clicked ? 
+        <Suspense fallback={"F"}>
+          <CompModel /> 
+        </Suspense>
+        : null }
+
+
+
+      {/* <Suspense fallback={"F"}>
         <CompModel position={position} />
-      </Suspense>
-      <HitTestExample setPosition={setPosition}/>
+      </Suspense> */}
+      <HitTestExample  setClicked={setClicked} setPosition={setPosition}/>
     </ARCanvas>
     
   );
