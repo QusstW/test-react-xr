@@ -9,13 +9,15 @@ export const ARScene = () => {
   const [position, setPosition] = useState()
   const [clicked, setClicked] = useState(false)
 
+  
+
   return (
     <ARCanvas sessionInit={{ requiredFeatures: ["hit-test"] }}>
       <ambientLight intensity={0.5} />
       <pointLight position={[5, 5, 5]} />
       { clicked ? 
         <Suspense fallback={"F"}>
-          <CompModel position={position} /> 
+          <CompModel rotation={[-120, 0, 0]} position={position} /> 
         </Suspense>
         : null }
       {/* <Suspense fallback={"F"}>
