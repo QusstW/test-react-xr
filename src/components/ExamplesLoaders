@@ -1,0 +1,12 @@
+
+const ComModel = (props) => {
+  const fbx = useFBX(Model)
+  return <primitive object={fbx} {...props} scale={[10, 10, 10]} />
+}
+
+
+const TestModel = (props) =>{
+   const gltf = useLoader(GLTFLoader, Model)
+  return <primitive object={gltf.scene} {...props} />
+}
+ 

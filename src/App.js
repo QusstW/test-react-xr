@@ -1,9 +1,8 @@
 import React from 'react'
-
-
-
-import { CanvasAR } from './components/CanvasAR'
-
+import { BrowserRouter, Route } from 'react-router-dom'
+import { ARScene } from './components/ARScene/ARScene'
+import NavMenu from './components/NavMenu/NavMenu'
+import Description from './components/Description/Description'
 
 
 
@@ -11,13 +10,11 @@ import { CanvasAR } from './components/CanvasAR'
 
 function App() {
   return (
-    <CanvasAR />
-    // <ARCanvas sessionInit={{ requiredFeatures: ['hit-test'] }}>
-    //   <ambientLight />
-    //   <pointLight position={[10, 10, 10]} />
-    //   <HitTestExample />
-    //   <DefaultXRControllers />
-    // </ARCanvas>
+    <BrowserRouter>
+      <NavMenu />
+      <Route path="/Description" component={Description} />
+      <Route path="/AR" component={ARScene} />
+    </BrowserRouter>
   )
 }
 
