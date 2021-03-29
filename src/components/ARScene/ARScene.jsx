@@ -15,12 +15,9 @@ export const ARScene = () => {
       <pointLight position={[5, 5, 5]} />
       { clicked ? 
         <Suspense fallback={"F"}>
-          <CompModel /> 
+          <CompModel position={position} /> 
         </Suspense>
         : null }
-
-
-
       {/* <Suspense fallback={"F"}>
         <CompModel position={position} />
       </Suspense> */}
