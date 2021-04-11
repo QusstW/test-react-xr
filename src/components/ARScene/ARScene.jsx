@@ -15,6 +15,8 @@ export const ARScene = () => {
 
   const [clickMother, setClickMother] = useState(false);
   const [clickVideo, setClickVideo] = useState(false)
+  const [clickProcessor, setClickProcessor] = useState(false)
+  
 
   return (
     <>
@@ -35,6 +37,7 @@ export const ARScene = () => {
               setSubjectId={setSubjectId}
               clickMother={clickMother}
               clickVideo={clickVideo}
+              clickProcessor={clickProcessor}
             />
           </Suspense>
         ) : null}
@@ -45,6 +48,7 @@ export const ARScene = () => {
         onClose={() => setSubjectId(null)}
         setClickMother={setClickMother}
         setClickVideo={setClickVideo}
+        setClickProcessor={setClickProcessor}
       />
     </>
   );

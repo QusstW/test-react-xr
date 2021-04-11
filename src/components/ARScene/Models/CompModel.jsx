@@ -5,8 +5,9 @@ import { useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { MotherBoard } from "./MotherBoard";
 import  {Videocard} from "./VideoCard"
+import {Processor} from "./Processor"
 
-export const CompModel = ({ position, setSubjectId, clickMother, clickVideo }) => {
+export const CompModel = ({ position, setSubjectId, clickMother, clickVideo, clickProcessor }) => {
   const gltf = useLoader(GLTFLoader, Model);
   console.log(position)
   return (
@@ -30,6 +31,13 @@ export const CompModel = ({ position, setSubjectId, clickMother, clickVideo }) =
           </Suspense>
         ) : null
         }
+        {clickProcessor ? (
+          <Suspense fallback={"G"}>
+            <Processor />
+          </Suspense>
+        ) : null
+        }
+
       </group>
     </>
   );

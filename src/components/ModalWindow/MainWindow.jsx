@@ -13,7 +13,7 @@ import Processor from "../../assets/images/Processor.jpeg";
 import Ram from "../../assets/images/RAM.jpg";
 import VideoCard from "../../assets/images/VideoCard.jpg";
 
-const MainWindow = ({ subjectId, onClose, setClickMother, setClickVideo }) => {
+const MainWindow = ({ subjectId, onClose, setClickMother, setClickVideo, setClickProcessor }) => {
   const [show, setShow] = useState(false);
   const [subject, setSubject] = useState(null);
 
@@ -47,7 +47,7 @@ const MainWindow = ({ subjectId, onClose, setClickMother, setClickVideo }) => {
                   <Image src={PowerSupy} rounded style={{ width: "150px" }} />
                   <div>Блоки Питания</div>
                 </Col>
-                <Col xs={6} md={4}>
+                <Col xs={6} md={4} onClick={ ()=>{ setClickProcessor(true)}} >
                   <Image src={Processor} rounded style={{ width: "150px" }} />
                   <div>Процессоры</div>
                 </Col>
