@@ -1,18 +1,36 @@
-import React from 'react'
-import { useFBX } from '@react-three/drei'
-import Model from '../../../assets/models/main_case.fbx'
+import React, { Suspense } from "react";
+import Model from "../../../assets/models/MainCase.glb";
 import { Interactive } from "@react-three/xr";
- export  const CompModel = (props) => {
-   console.log("ya tyta")
-    const fbx = useFBX(Model)
-    return (
-      <Interactive
-      onSelect={ ()=>{
-        console.log('u are clicked to comuter case')
-       } }
-      >
-        <primitive object={fbx} {...props} scale={[0.05,0.05, 0.05]} />
-      </Interactive>
-      
-    )
-  }
+import { useLoader } from "react-three-fiber";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { MotherBoard } from "./MotherBoard";
+import  {Videocard} from "./VideoCard"
+
+export const CompModel = ({ position, setSubjectId, clickMother, clickVideo }) => {
+  const gltf = useLoader(GLTFLoader, Model);
+  console.log(position)
+  return (
+    <>
+      <group position={position}>
+        <Interactive onSelect={() => setSubjectId(1)}>
+          <primitive
+            object={gltf.scene}
+            scale={[5, 5, 5]}
+          />
+        </Interactive>
+        {clickMother ? (
+          <Suspense fallback={"F"}>
+            <MotherBoard />
+          </Suspense>
+        ) : null}
+
+        {clickVideo ? (
+          <Suspense fallback={"F"}>
+            <Videocard />
+          </Suspense>
+        ) : null
+        }
+      </group>
+    </>
+  );
+};

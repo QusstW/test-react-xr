@@ -3,8 +3,6 @@ import { useResource } from "react-three-fiber";
 import { Interactive, useHitTest } from "@react-three/xr";
 import { Circle } from "@react-three/drei";
 
-
-
 export const HitTestExample = ( {setPosition, setClicked} ) => {
   const ref = useResource();
 
@@ -15,7 +13,6 @@ export const HitTestExample = ( {setPosition, setClicked} ) => {
       ref.current.scale
     );
   });
-
   return (
     <Interactive
       onSelect={() => {
