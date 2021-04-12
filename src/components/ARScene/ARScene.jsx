@@ -1,8 +1,7 @@
 import React, { Suspense, useState } from "react";
 import { ARCanvas } from "@react-three/xr";
-import { HitTestExample } from "./HitTestExample/HitTestExample";
-import { CompModel } from "./Models/CompModel";
-import { MotherBoard } from "./Models/MotherBoard";
+import { HitTestExample } from "./HitTestExample";
+import { CompModel } from "./CompModel";
 import MainWindow from "../ModalWindow/MainWindow";
 
 const AROVerlay = document.getElementsByTagName("body")[0];
@@ -10,13 +9,9 @@ const AROVerlay = document.getElementsByTagName("body")[0];
 export const ARScene = () => {
   const [position, setPosition] = useState();
   const [clicked, setClicked] = useState(false);
-
   const [subjectId, setSubjectId] = useState(null);
 
-  const [clickMother, setClickMother] = useState(false);
-  const [clickVideo, setClickVideo] = useState(false)
-  const [clickProcessor, setClickProcessor] = useState(false)
-  
+  const [selectedModels, setSelectedModels] = useState([])
 
   return (
     <>
@@ -33,11 +28,8 @@ export const ARScene = () => {
           <Suspense fallback={"F"}>
             <CompModel
               position={position}
-              setPosition={setPosition}
               setSubjectId={setSubjectId}
-              clickMother={clickMother}
-              clickVideo={clickVideo}
-              clickProcessor={clickProcessor}
+              models={selectedModels}
             />
           </Suspense>
         ) : null}
@@ -46,9 +38,7 @@ export const ARScene = () => {
       <MainWindow
         subjectId={subjectId}
         onClose={() => setSubjectId(null)}
-        setClickMother={setClickMother}
-        setClickVideo={setClickVideo}
-        setClickProcessor={setClickProcessor}
+        useModels={() => [selectedModels, setSelectedModels]}
       />
     </>
   );
