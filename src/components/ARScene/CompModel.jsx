@@ -1,11 +1,11 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Interactive } from "@react-three/xr";
 import { useLoader } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import ModelComponent from "./ModelComponent";
 
-export const CompModel = ({ position, setSubjectId, models }) => {
-  const gltf = useLoader(GLTFLoader, "./assets/models/MainCase.glb");
+export const CompModel = ({ position, setSubjectId, models, currentCase }) => {
+  const gltf = useLoader(GLTFLoader, currentCase);
   return (
     <>
       <group position={position}>

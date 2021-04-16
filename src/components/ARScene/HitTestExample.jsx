@@ -19,7 +19,6 @@ export const HitTestExample = ({ setPosition, setClicked }) => {
   return (
     <Interactive
       onSelect={() => {
-        console.log('hello')
         setPosition([ref.current.position.x, ref.current.position.y, ref.current.position.z])
         setClicked(true)
       }}
