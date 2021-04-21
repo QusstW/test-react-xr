@@ -1,0 +1,76 @@
+{
+    // "workbench.colorTheme": "Community Material Theme High Contrast",
+    // "workbench.iconTheme": "eq-material-theme-icons-darker",
+    "editor.tabSize": 2,
+    "editor.fontSize": 12,
+    "editor.minimap.enabled": false,
+    "editor.cursorBlinking": "expand",
+    "editor.fontLigatures": false,
+    "editor.wordWrap": "on",
+    "editor.cursorSmoothCaretAnimation": true,
+    "editor.tabCompletion": "on",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "workbench.editor.enablePreview": false,
+    "window.restoreFullscreen": true,
+    "window.title": "${activeEditorShort}${separator}${rootName}",
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/*.code-search": true,
+      "ios/": true,
+      "android/": true,
+      "dist/": true,
+      "yarn.lock": true,
+      "package-lock.json": true,
+      ".gitignore": true,
+      ".expo": true,
+      ".vscode": true
+    },
+    "explorer.confirmDelete": false,
+    "workbench.editor.tabSizing": "shrink",
+    "breadcrumbs.enabled": true,
+    "explorer.openEditors.visible": 0,
+    "npm-intellisense.importES6": true,
+    "typescript.suggest.paths": false,
+    // Prettier
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": true,
+    "prettier.trailingComma": "none",
+    "prettier.semi": false,
+    "prettier.arrowParens": "always",
+    "prettier.proseWrap": "preserve",
+    "prettier.quoteProps": "as-needed",
+    "prettier.jsxBracketSameLine": false,
+    "prettier.bracketSpacing": true,
+    "prettier.tabWidth": 2,
+    // Macros
+    "macros": {
+      "collapseAndClose": [
+        "workbench.files.action.collapseExplorerFolders",
+        "workbench.action.closeAllEditors"
+      ]
+    },
+    // Markdown
+    "[markdown]": {
+      "editor.quickSuggestions": true
+    },
+    "[javascriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "git.autofetch": true,
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "git.confirmSync": false,
+    "[vue]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "settingsSync.ignoredSettings": []
+  }
