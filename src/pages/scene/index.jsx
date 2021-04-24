@@ -4,9 +4,10 @@ import { Canvas, useResource } from 'react-three-fiber'
 import Camera from '../../components/Camera'
 import Computer from './extra/Computer'
 import ElementsModal from '../../components/modals/ElementsModal'
-
 import useComputer from '../../hooks/useComputer'
 import CategoryMenu from './extra/CategoryMenu'
+
+import EditorModeMenu from './extra/EditorModeMenu'
 
 export default function SceneScreen() {
   const camera = useResource()
@@ -17,6 +18,8 @@ export default function SceneScreen() {
   const [modal, setModal] = useState(false)
   const [hasBoxMode, setBoxMode] = useState(!selectedBox)
   const [selectedCategory, setSelectedCategory] = useState(null)
+
+  const { editMode, setEditMode } = useComputer()
 
   const handleCloseModal = () => {
     if (hasBoxMode) setBoxMode(false)
@@ -44,9 +47,11 @@ export default function SceneScreen() {
         <pointLight position={[-10, -10, -10]} />
         <Computer
           position={computerPosition}
+          setPosition={setComputerPosition}
           elements={selectedElements}
           box={selectedBox}
           onComputerPress={() => setModal(true)}
+          editMode={editMode}
         />
       </Canvas>
       <ElementsModal
@@ -56,6 +61,7 @@ export default function SceneScreen() {
         selectedCategory={selectedCategory}
       />
       <CategoryMenu onSelect={handleSelectCategory} />
+      <EditorModeMenu setEditMode={setEditMode} />
     </>
   )
 }

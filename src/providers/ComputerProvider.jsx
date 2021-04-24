@@ -8,6 +8,8 @@ export default function ComputerProvider(props) {
   const [box, setBox] = useState(null)
   const [elements, setElements] = useState([])
 
+  const [editMode, setEditMode] = useState(null)
+
   const toggleElement = (elementId) => {
     console.log(
       elements.indexOf(elementId) !== -1
@@ -47,7 +49,10 @@ export default function ComputerProvider(props) {
         //
         box,
         selectedBox,
-        setBox
+        setBox,
+        //
+        editMode,
+        setEditMode
       }}
       {...props}
     />
