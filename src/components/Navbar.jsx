@@ -1,21 +1,46 @@
 import React from 'react'
-import Navbar from 'react-bootstrap/Navbar'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { Nav } from 'react-bootstrap'
+// import { Link as RouterLink } from 'react-router-dom'
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Chip
+} from '@material-ui/core'
+import { Menu as MenuIcon } from '@material-ui/icons'
+import { makeStyles } from '@material-ui/core/styles'
+
+import useComputer from '../hooks/useComputer'
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    marginRight: 'auto'
+  },
+  progress: {
+    marginLeft: theme.spacing(1)
+  }
+}))
 
 const NavMenu = () => {
+  const styles = useStyles()
+  const { progress } = useComputer()
+
   return (
-    <Navbar bg='light' expand='lg'>
-      <Navbar.Brand href='/home'>PC Building Simulator</Navbar.Brand>
-      <Navbar.Toggle aria-controls='basic-navbar-nav' />
-      <Navbar.Collapse id='basic-navbar-nav'>
-        <Nav className='mr-auto'>
-          <Nav.Link href='/home'>Home page</Nav.Link>
-          <Nav.Link href='/description'>PC Examples</Nav.Link>
-          <Nav.Link href='/ar'>AR Mode</Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <AppBar position='fixed'>
+      <Toolbar>
+        <IconButton edge='start' color='inherit' aria-label='menu'>
+          <MenuIcon />
+        </IconButton>
+        <Typography variant='h6' color='inherit' className={styles.title}>
+          Сборка компьютера
+        </Typography>
+        <Chip
+          className={styles.progress}
+          style={{ backgroundColor: progress.color, color: '#fff' }}
+          label={`${progress.value}%`}
+        />
+      </Toolbar>
+    </AppBar>
   )
 }
 export default NavMenu

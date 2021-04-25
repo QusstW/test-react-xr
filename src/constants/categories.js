@@ -1,19 +1,23 @@
 const categories = [
   {
     id: 'mother',
-    name: 'Материнские платы'
+    name: 'Материнские платы',
+    required: []
   },
   {
     id: 'videocard',
-    name: 'Видекарты'
+    name: 'Видекарты',
+    required: ['mother']
   },
   {
     id: 'processor',
-    name: 'Процессоры'
+    name: 'Процессоры',
+    required: ['mother']
   },
   {
     id: 'powerSupply',
-    name: 'Блоки питания'
+    name: 'Блоки питания',
+    required: ['mother', 'videocard']
   }
 ]
 

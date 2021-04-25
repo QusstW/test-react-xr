@@ -1,42 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Canvas, useResource } from 'react-three-fiber'
 
 import Camera from '../../components/Camera'
 import Computer from './extra/Computer'
-import ElementsModal from '../../components/modals/ElementsModal'
 import useComputer from '../../hooks/useComputer'
-import CategoryMenu from './extra/CategoryMenu'
-
-import EditorModeMenu from './extra/EditorModeMenu'
+import Fabs from './extra/Fabs'
+import ModeSlider from './extra/ModeSlider'
 
 export default function SceneScreen() {
   const camera = useResource()
 
-  const { selectedBox, selectedElements } = useComputer()
-  const [computerPosition, setComputerPosition] = useState([0, 0, 0])
-
-  const [modal, setModal] = useState(false)
-  const [hasBoxMode, setBoxMode] = useState(!selectedBox)
-  const [selectedCategory, setSelectedCategory] = useState(null)
-
-  const { editMode, setEditMode } = useComputer()
-
-  const handleCloseModal = () => {
-    if (hasBoxMode) setBoxMode(false)
-    if (selectedCategory) setSelectedCategory(null)
-    setModal(false)
-  }
-
-  const handleSelectCategory = (category) => {
-    setSelectedCategory(category)
-    setModal(true)
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setModal(true)
-    }, 2e3)
-  }, [])
+  const {
+    selectedBox,
+    selectedElements,
+    hasDragMode,
+    computerProps,
+    setComputerPosition
+  } = useComputer()
 
   return (
     <>
@@ -46,22 +26,16 @@ export default function SceneScreen() {
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
         <pointLight position={[-10, -10, -10]} />
         <Computer
-          position={computerPosition}
+          computerProps={computerProps}
           setPosition={setComputerPosition}
           elements={selectedElements}
           box={selectedBox}
-          onComputerPress={() => setModal(true)}
-          editMode={editMode}
+          onComputerPress={() => {}}
+          hasDragMode={hasDragMode}
         />
       </Canvas>
-      <ElementsModal
-        isOpen={modal}
-        onClose={handleCloseModal}
-        hasBox={hasBoxMode}
-        selectedCategory={selectedCategory}
-      />
-      <CategoryMenu onSelect={handleSelectCategory} />
-      <EditorModeMenu setEditMode={setEditMode} />
+      <Fabs />
+      <ModeSlider />
     </>
   )
 }

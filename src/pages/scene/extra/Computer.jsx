@@ -1,37 +1,34 @@
 import React from 'react'
-import { useThree } from 'react-three-fiber'
-import { useDrag } from 'react-use-gesture'
 import ComputerBox from './ComputerBox'
 import ComputerElement from './ComputerElement'
 
+import useCustomDrag from '../../../hooks/useCustomDrag'
+
 export default function Computer({
-  position,
+  computerProps,
   setPosition,
   onComputerPress,
   box,
   elements,
-  editMode
+  hasDragMode
 }) {
-  const { size, viewport } = useThree()
-  const aspect = size.width / viewport.width
-  const bind = useDrag(
-    ({ offset: [x, y] }) => {
-      if (editMode === 1) {
-        console.log(position)
-        const [, , z] = position
-        setPosition([x / aspect, -y / aspect, z])
-      }
-    },
-    { pointerEvents: true }
-  )
+  const { position } = computerProps
+  const bind = useCustomDrag({
+    hasDragMode,
+    usePosition: [position, setPosition]
+  })
+
+  // 5, 5, 5
 
   return (
     <>
-      <group position={position} {...bind()}>
-        <ComputerBox onClick={onComputerPress} box={box} />
-        {elements.map((el) => (
-          <ComputerElement element={el} key={`element-${el.id}`} />
-        ))}
+      <group {...computerProps} {...bind()}>
+        <group position={[-0.001, -0.001, -0.001]}>
+          <ComputerBox onClick={onComputerPress} box={box} />
+          {elements.map((el) => (
+            <ComputerElement element={el} key={`element-${el.id}`} />
+          ))}
+        </group>
       </group>
     </>
   )

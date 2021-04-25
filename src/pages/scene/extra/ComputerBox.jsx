@@ -13,7 +13,7 @@ export default function ComputerBox({ box, onClick = () => {} }) {
   if (box) {
     return (
       <Suspense fallback={() => {}}>
-        <AsyncComputerBox onClick={onClick} box={box} />
+        <AsyncComputerBox onClick={onClick} box={box} key={`box${box.id}`} />
       </Suspense>
     )
   }
