@@ -1,5 +1,7 @@
 import React, { createContext, useState, useMemo } from 'react'
 
+import { useSnackbar } from 'notistack'
+
 import {
   CATEGORIES,
   BOXES,
@@ -12,6 +14,8 @@ import {
 export const ComputerContext = createContext()
 
 export default function ComputerProvider(props) {
+  const { enqueueSnackbar } = useSnackbar()
+
   const [box, setBox] = useState(null)
   const [elements, setElements] = useState([])
   const [editMode, setEditMode] = useState(null)
@@ -28,8 +32,12 @@ export default function ComputerProvider(props) {
 
     const hasRemoveMode = elements.indexOf(elementId) !== -1
 
-    if (hasRemoveMode) setElements(elements.filter((id) => id !== elementId))
-    else {
+    if (hasRemoveMode) {
+      setElements(elements.filter((id) => id !== elementId))
+      enqueueSnackbar(`Объект ${element.name} успешно удален`, {
+        variant: 'success'
+      })
+    } else {
       let output = JSON.parse(JSON.stringify(elements))
       const hasSelectedType =
         selectedElements.map((el) => el.type).indexOf(type) !== -1
@@ -41,7 +49,17 @@ export default function ComputerProvider(props) {
         output = output.filter((id) => id !== selectedId)
       }
       setElements([...output, elementId])
+      enqueueSnackbar(`Объект ${element.name} успешно добавлен`, {
+        variant: 'success'
+      })
     }
+  }
+
+  const handleSetBox = (boxId) => {
+    enqueueSnackbar(!box ? `Корпус успешно выбран` : 'Корпус успешно сменен', {
+      variant: 'success'
+    })
+    setBox(boxId)
   }
 
   const selectedElements = useMemo(() => {
@@ -104,7 +122,7 @@ export default function ComputerProvider(props) {
 
   const searchType = (type) => selectedElements.find((el) => el.type === type)
 
-  const progress = () => {
+  const progress = useMemo(() => {
     let value = 0 // max 6
     let color = 'red'
 
@@ -119,26 +137,32 @@ export default function ComputerProvider(props) {
       else color = 'green'
     }
 
-    console.log(color, value)
+    if (value === CATEGORIES.length + 1) {
+      enqueueSnackbar(`Поздавляем, компъютер успешно собран`, {
+        variant: 'success'
+      })
+    }
 
     return {
       color,
       value: parseInt((value / (CATEGORIES.length + 1)) * 100, 10)
     }
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [box, elements])
 
   return (
     <ComputerContext.Provider
       value={{
-        progress: progress(),
+        progress,
         //
         elements,
         selectedElements,
         toggleElement,
+        searchType,
         //
         box,
         selectedBox,
-        setBox,
+        setBox: handleSetBox,
         //
         editMode,
         setEditMode,

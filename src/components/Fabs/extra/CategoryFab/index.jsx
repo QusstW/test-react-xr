@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Fab, Menu, MenuItem } from '@material-ui/core'
-import { Category as CategoryIcon } from '@material-ui/icons'
+import { Fab, Menu, MenuItem, Typography } from '@material-ui/core'
+import {
+  Category as CategoryIcon,
+  Check as CheckIcon
+} from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { CATEGORIES } from '../../../../constants'
+import { useComputer } from '../../../../hooks'
 
 import ElementsModal from './ElementsModal'
 
@@ -12,11 +16,19 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     bottom: theme.spacing(3),
     right: theme.spacing(3)
+  },
+  categoryMenuItem: {
+    justifyContent: 'space-between'
+  },
+  categoryMenuItemText: {
+    marginRight: theme.spacing(1)
   }
 }))
 
 export default function CategoryFab() {
   const styles = useStyles()
+
+  const { searchType } = useComputer()
 
   // ELEMENTS MODAL
   const [categoryMenu, setCategoryMenu] = useState()
@@ -70,8 +82,15 @@ export default function CategoryFab() {
         onClose={() => setCategoryMenu(null)}
       >
         {CATEGORIES.map((c, index) => (
-          <MenuItem key={index} onClick={() => handleSelectCategory(c.id)}>
-            {c.name}
+          <MenuItem
+            className={styles.categoryMenuItem}
+            key={index}
+            onClick={() => handleSelectCategory(c.id)}
+          >
+            <Typography className={styles.categoryMenuItemText}>
+              {c.name}
+            </Typography>
+            {searchType(c.id) && <CheckIcon />}
           </MenuItem>
         ))}
       </Menu>
