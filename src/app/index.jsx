@@ -1,12 +1,16 @@
 import React from 'react'
 
-import ComputerProvider from '../providers/ComputerProvider'
-import Navigation from './navigation'
+import { ComputerProvider } from '../providers'
+import { Fabs, ModeSlider, Navbar } from '../components'
+import Scene from './scene'
 
 export default function App() {
   return (
     <ComputerProvider>
-      <Navigation />
+      <Navbar />
+      <Scene />
+      <Fabs />
+      <ModeSlider />
     </ComputerProvider>
   )
 }

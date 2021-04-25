@@ -1,6 +1,7 @@
 import React, { createContext, useState, useMemo } from 'react'
 
 import {
+  CATEGORIES,
   BOXES,
   ELEMENTS,
   hasDragMode,
@@ -101,27 +102,28 @@ export default function ComputerProvider(props) {
     }
   }
 
+  const searchType = (type) => selectedElements.find((el) => el.type === type)
+
   const progress = () => {
     let value = 0 // max 6
     let color = 'red'
 
     if (box) value += 1
-    if (selectedElements.find((el) => el.type === 'videocard')) value += 1
 
-    switch (value) {
-      case 1:
-        color = 'orange'
-        break
-      case 2:
-        color = 'green'
-        break
-      default:
-        break
+    CATEGORIES.forEach((c) => {
+      if (searchType(c.id)) value += 1
+    })
+
+    if (value) {
+      if (value < CATEGORIES.length + 1) color = 'orange'
+      else color = 'green'
     }
+
+    console.log(color, value)
 
     return {
       color,
-      value: parseInt((value / 6) * 100, 10)
+      value: parseInt((value / (CATEGORIES.length + 1)) * 100, 10)
     }
   }
 

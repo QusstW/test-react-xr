@@ -2,7 +2,7 @@ import React from 'react'
 import { Slider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
-import useComputer from '../../../hooks/useComputer'
+import { useComputer } from '../hooks'
 
 const useStyles = makeStyles((theme) => ({
   slider: {

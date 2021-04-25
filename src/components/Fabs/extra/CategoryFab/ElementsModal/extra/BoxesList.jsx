@@ -12,8 +12,8 @@ import {
 import { makeStyles } from '@material-ui/core/styles'
 import { Check as CheckIcon } from '@material-ui/icons'
 
-import { BOXES } from '../../../../constants'
-import useComputer from '../../../../hooks/useComputer'
+import { BOXES } from '../../../../../../constants'
+import useComputer from '../../../../../../hooks/useComputer'
 
 const useStyles = makeStyles((theme) => ({
   titleBox: {

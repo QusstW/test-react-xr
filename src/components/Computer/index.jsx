@@ -1,8 +1,9 @@
 import React from 'react'
-import ComputerBox from './ComputerBox'
-import ComputerElement from './ComputerElement'
 
-import useCustomDrag from '../../../hooks/useCustomDrag'
+import ComputerBox from './extra/ComputerBox'
+import ComputerElement from './extra/ComputerElement'
+
+import useCustomDrag from '../../hooks/useCustomDrag'
 
 export default function Computer({
   computerProps,

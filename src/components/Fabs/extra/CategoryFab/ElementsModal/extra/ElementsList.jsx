@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import {
   //
   Grid,
@@ -12,8 +12,8 @@ import {
 import { makeStyles } from '@material-ui/core/styles'
 import { Check as CheckIcon } from '@material-ui/icons'
 
-import { CATEGORIES, ELEMENTS } from '../../../../constants'
-import useComputer from '../../../../hooks/useComputer'
+import { CATEGORIES, ELEMENTS } from '../../../../../../constants'
+import useComputer from '../../../../../../hooks/useComputer'
 
 const useStyles = makeStyles((theme) => ({
   titleBox: {

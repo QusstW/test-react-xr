@@ -1,17 +1,16 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
-  Button,
+  Button
   //
-  Grid
+
   //
 } from '@material-ui/core'
 
-import useComputer from '../../../hooks/useComputer'
-import useElementsCategory from '../../../hooks/useElementsCategory'
+import { useComputer, useElementsCategory } from '../../../../../hooks'
 
 import BoxesList from './extra/BoxesList'
 import ElementsList from './extra/ElementsList'
@@ -24,6 +23,10 @@ const ElementsModal = ({
 }) => {
   const { selectedBox } = useComputer()
 
+  /**
+   * получает объект текущей категории по id
+   * selectedCategoryObj = {id, name}
+   */
   const selectedCategoryObj = useElementsCategory(selectedCategory)
 
   const [show, setShow] = useState(false)
@@ -37,6 +40,9 @@ const ElementsModal = ({
     onClose()
   }
 
+  /**
+   * Рендерит титуль исходя из состояний hasBox и selectedCategory
+   */
   const title = () => {
     if (hasBox) return 'Выбор коробки'
     if (selectedCategory) return selectedCategoryObj.name
