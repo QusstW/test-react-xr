@@ -7,7 +7,7 @@ import useComputer from '../../../hooks/useComputer'
 const useStyles = makeStyles((theme) => ({
   slider: {
     position: 'absolute',
-    top: theme.spacing(11),
+    top: theme.spacing(9),
     bottom: theme.spacing(4),
     left: theme.spacing(2)
   }

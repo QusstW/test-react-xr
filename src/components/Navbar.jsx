@@ -1,13 +1,6 @@
 import React from 'react'
 // import { Link as RouterLink } from 'react-router-dom'
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Chip
-} from '@material-ui/core'
-import { Menu as MenuIcon } from '@material-ui/icons'
+import { AppBar, Toolbar, Typography, Chip } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import useComputer from '../hooks/useComputer'
@@ -27,17 +20,15 @@ const NavMenu = () => {
 
   return (
     <AppBar position='fixed'>
-      <Toolbar>
-        <IconButton edge='start' color='inherit' aria-label='menu'>
-          <MenuIcon />
-        </IconButton>
+      <Toolbar variant='dense'>
         <Typography variant='h6' color='inherit' className={styles.title}>
-          Сборка компьютера
+          Сборка компьютера AR
         </Typography>
         <Chip
           className={styles.progress}
           style={{ backgroundColor: progress.color, color: '#fff' }}
           label={`${progress.value}%`}
+          size='small'
         />
       </Toolbar>
     </AppBar>
