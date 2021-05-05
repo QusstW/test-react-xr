@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Fab, Menu, MenuItem, Typography } from '@material-ui/core'
 import {
   Category as CategoryIcon,
@@ -28,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
 export default function CategoryFab() {
   const styles = useStyles()
 
-  const { searchType } = useComputer()
+  const { searchType, elementsModal, setElementsModal } = useComputer()
 
   // ELEMENTS MODAL
   const [categoryMenu, setCategoryMenu] = useState()
-  const [elementsModal, setElementsModal] = useState(false)
+  // const [elementsModal, setElementsModal] = useState(false)
   const [hasBoxMode, setBoxMode] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState(null)
 
@@ -54,15 +54,6 @@ export default function CategoryFab() {
     setSelectedCategory(category)
     setElementsModal(true)
   }
-
-  /**
-   * Открывается модальное окно при старте AR-сесии спустя время заданное в setTimeout
-   */
-  useEffect(() => {
-    setTimeout(() => {
-      setElementsModal(true)
-    }, 2e3)
-  }, [])
 
   return (
     <>

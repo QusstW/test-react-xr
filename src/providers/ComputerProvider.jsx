@@ -16,6 +16,8 @@ export const ComputerContext = createContext()
 export default function ComputerProvider(props) {
   const { enqueueSnackbar } = useSnackbar()
 
+  const [elementsModal, setElementsModal] = useState(false)
+
   const [box, setBox] = useState(null)
   const [elements, setElements] = useState([])
   const [editMode, setEditMode] = useState(null)
@@ -176,7 +178,10 @@ export default function ComputerProvider(props) {
         },
         setComputerPosition: setPoistion,
         editModeValue: editModeValue(),
-        handleEditModeValue
+        handleEditModeValue,
+        //
+        elementsModal,
+        setElementsModal
       }}
       {...props}
     />

@@ -1,23 +1,27 @@
 import React from 'react'
-import { Canvas, useResource } from 'react-three-fiber'
+import { ARCanvas } from '@react-three/xr'
 
-import { Camera, Computer, Light } from '../components'
+import { Computer, HitTestExample, Light } from '../components'
 import { useComputer } from '../hooks'
 
 export default function SceneScreen() {
-  const camera = useResource()
-
   const {
     selectedBox,
     selectedElements,
     hasDragMode,
     computerProps,
-    setComputerPosition
+    setComputerPosition,
+    setElementsModal
   } = useComputer()
 
   return (
-    <Canvas id='scene'>
-      <Camera ref={camera} />
+    <ARCanvas
+      sessionInit={{
+        requiredFeatures: ['hit-test'],
+        optionalFeatures: ['dom-overlay'],
+        domOverlay: { root: document.body }
+      }}
+    >
       <Light />
       <Computer
         computerProps={computerProps}
@@ -27,6 +31,10 @@ export default function SceneScreen() {
         onComputerPress={() => {}}
         hasDragMode={hasDragMode}
       />
-    </Canvas>
+      <HitTestExample
+        setPosition={setComputerPosition}
+        setElementsModal={setElementsModal}
+      />
+    </ARCanvas>
   )
 }

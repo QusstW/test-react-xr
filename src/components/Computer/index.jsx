@@ -4,6 +4,7 @@ import ComputerBox from './extra/ComputerBox'
 import ComputerElement from './extra/ComputerElement'
 
 import useCustomDrag from '../../hooks/useCustomDrag'
+import { Interactive } from '@react-three/xr'
 
 export default function Computer({
   computerProps,
@@ -23,14 +24,20 @@ export default function Computer({
 
   return (
     <>
-      <group {...computerProps} {...bind()}>
-        <group position={[-0.001, -0.001, -0.001]}>
-          <ComputerBox onClick={onComputerPress} box={box} />
-          {elements.map((el) => (
-            <ComputerElement element={el} key={`element-${el.id}`} />
-          ))}
+      <Interactive
+        onClick={() => {
+          console.log('нажал')
+        }}
+      >
+        <group {...computerProps} {...bind()}>
+          <group position={[-0.001, -0.001, -0.001]}>
+            <ComputerBox onClick={onComputerPress} box={box} />
+            {elements.map((el) => (
+              <ComputerElement element={el} key={`element-${el.id}`} />
+            ))}
+          </group>
         </group>
-      </group>
+      </Interactive>
     </>
   )
 }
