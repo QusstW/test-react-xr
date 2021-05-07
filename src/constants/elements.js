@@ -7,7 +7,9 @@ const elements = [
     data: {
       object: './assets/models/MotherBoard.glb',
       scale: 5
-    }
+    },
+    willMount: [],
+    willUnmount: []
   },
   {
     id: 2,
@@ -17,7 +19,9 @@ const elements = [
     data: {
       object: './assets/models/rtx2080ti.glb',
       scale: 5
-    }
+    },
+    willMount: [],
+    willUnmount: []
   },
   {
     id: 3,
@@ -27,7 +31,9 @@ const elements = [
     data: {
       object: './assets/models/Processor.glb',
       scale: 5
-    }
+    },
+    willMount: [],
+    willUnmount: []
   },
   {
     id: 4,
@@ -37,7 +43,9 @@ const elements = [
     data: {
       object: './assets/models/SSD.glb',
       scale: 5
-    }
+    },
+    willMount: [],
+    willUnmount: []
   },
   {
     id: 5,

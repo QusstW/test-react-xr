@@ -19,6 +19,7 @@ export default function ComputerProvider(props) {
   const [box, setBox] = useState(null)
   const [elements, setElements] = useState([])
   const [editMode, setEditMode] = useState(null)
+  const [addedElements, setAddedElements] = useState([])
 
   const [position, setPoistion] = useState([0, 0, 0])
   const [scale, setScale] = useState(1)
@@ -27,11 +28,19 @@ export default function ComputerProvider(props) {
   const [rotateZ, setRotateZ] = useState(0)
 
   const toggleElement = (elementId) => {
+    //ищет в массиве объектов объект с id равным id который пришёл в пропсах(elementId)
     const element = ELEMENTS.find((el) => el.id === elementId)
+
+    // получаем тип найденного объекта
     const { type } = element
-
+    /**
+     * Если в массиве elements есть объект с id = elementId возвращает этот объект
+     * Если такого объекта нет возвращает false
+     */
     const hasRemoveMode = elements.indexOf(elementId) !== -1
-
+    /**
+     * Если hasRemoveMode содержит в себе объект - в массив elements записывается
+     */
     if (hasRemoveMode) {
       setElements(elements.filter((id) => id !== elementId))
       enqueueSnackbar(`Объект ${element.name} успешно удален`, {
@@ -39,6 +48,7 @@ export default function ComputerProvider(props) {
       })
     } else {
       let output = JSON.parse(JSON.stringify(elements))
+
       const hasSelectedType =
         selectedElements.map((el) => el.type).indexOf(type) !== -1
 

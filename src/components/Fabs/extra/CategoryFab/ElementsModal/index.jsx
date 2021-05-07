@@ -23,10 +23,6 @@ const ElementsModal = ({
 }) => {
   const { selectedBox } = useComputer()
 
-  /**
-   * получает объект текущей категории по id
-   * selectedCategoryObj = {id, name}
-   */
   const selectedCategoryObj = useElementsCategory(selectedCategory)
 
   const [show, setShow] = useState(false)
