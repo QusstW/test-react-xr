@@ -6,6 +6,7 @@ import {
   CATEGORIES,
   BOXES,
   ELEMENTS,
+  NOTIFY,
   hasDragMode,
   hasScaleMode,
   hasViewMode
@@ -19,7 +20,6 @@ export default function ComputerProvider(props) {
   const [box, setBox] = useState(null)
   const [elements, setElements] = useState([])
   const [editMode, setEditMode] = useState(null)
-  const [addedElements, setAddedElements] = useState([])
 
   const [position, setPoistion] = useState([0, 0, 0])
   const [scale, setScale] = useState(1)
@@ -27,9 +27,24 @@ export default function ComputerProvider(props) {
   const [rotateY, setRotateY] = useState(0)
   const [rotateZ, setRotateZ] = useState(0)
 
+  const selectedElements = useMemo(() => {
+    if (elements.length) {
+      return ELEMENTS.filter((el) => elements.indexOf(el.id) !== -1)
+    }
+
+    return []
+  }, [elements])
+
+  const getElementByType = (type) => {
+    return selectedElements.find((el) => {
+      return el.type === type
+    })
+  }
+
   const toggleElement = (elementId) => {
     //ищет в массиве объектов объект с id равным id который пришёл в пропсах(elementId)
     const element = ELEMENTS.find((el) => el.id === elementId)
+    const { beforeMount, beforeDelete, args: elementArgs } = element
 
     // получаем тип найденного объекта
     const { type } = element
@@ -42,11 +57,55 @@ export default function ComputerProvider(props) {
      * Если hasRemoveMode содержит в себе объект - в массив elements записывается
      */
     if (hasRemoveMode) {
+      for (let i = 0; i < beforeDelete.length; i++) {
+        const key = beforeDelete[i]
+        const obj = getElementByType(key)
+        if (obj) {
+          enqueueSnackbar(`Вначале нужно удалить ${key}`, {
+            variant: 'error'
+          })
+          return
+        }
+      }
+
       setElements(elements.filter((id) => id !== elementId))
       enqueueSnackbar(`Объект ${element.name} успешно удален`, {
         variant: 'success'
       })
     } else {
+      for (let i = 0; i < beforeMount.length; i++) {
+        const key = beforeMount[i]
+        const obj = getElementByType(key)
+        if (!obj) {
+          NOTIFY({
+            enqueueSnackbar,
+            key: 'MOUNT_EL_NOT_FOUND',
+            value: key
+          })
+          return
+        }
+
+        console.log(obj.args, element.type)
+
+        if (!obj.args || !obj.args[element.type]) break
+        const args = obj.args[element.type]
+        const argsKeys = Object.keys(args)
+
+        for (let j = 0; j < argsKeys.length; j++) {
+          const argKey = argsKeys[j]
+          console.log(argKey)
+
+          if (elementArgs[argKey] !== args[argKey]) {
+            NOTIFY({
+              enqueueSnackbar,
+              key: 'MOUNT_ARG_NOT_FOUND',
+              value: [element.type, argKey, args[argKey]]
+            })
+            return
+          }
+        }
+      }
+
       let output = JSON.parse(JSON.stringify(elements))
 
       const hasSelectedType =
@@ -71,14 +130,6 @@ export default function ComputerProvider(props) {
     })
     setBox(boxId)
   }
-
-  const selectedElements = useMemo(() => {
-    if (elements.length) {
-      return ELEMENTS.filter((el) => elements.indexOf(el.id) !== -1)
-    }
-
-    return []
-  }, [elements])
 
   /**
    * Меморизированное значение коробки

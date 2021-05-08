@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react'
 import { Fab, Menu, MenuItem, Typography } from '@material-ui/core'
 import {
@@ -5,22 +6,27 @@ import {
   Check as CheckIcon
 } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
+import Icon from '@material-ui/core/Icon'
 
 import { EDIT_MODES } from '../../../constants'
 
 import { useComputer } from '../../../hooks'
 
 const useStyles = makeStyles((theme) => ({
-  modeFab: {
+  wrapperFab: {
     position: 'absolute',
-    bottom: theme.spacing(12),
-    right: theme.spacing(4)
+    display: 'flex',
+    flexDirection: 'column',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2)
   },
-  modeMenuItem: {
-    justifyContent: 'space-between'
+  fabItem: {
+    textAlign: 'center',
+    marginTop: theme.spacing(2)
   },
-  modeMenuItemText: {
-    marginRight: theme.spacing(1)
+  imageIcon: {
+    width: '22px',
+    height: 'auto'
   }
 }))
 
@@ -28,43 +34,21 @@ export default function ModeFab() {
   const styles = useStyles()
 
   const { editMode, setEditMode } = useComputer()
-  const [modeMenu, setModeMenu] = useState()
-  const handleSelectMode = (mode) => {
-    setEditMode(mode)
-    setModeMenu(null)
-  }
 
   return (
-    <>
-      <Fab
-        className={styles.modeFab}
-        color='primary'
-        aria-controls='mode-menu'
-        size='small'
-        onClick={(e) => setModeMenu(e.currentTarget)}
-      >
-        <TouchAppIcon fontSize='small' />
-      </Fab>
-      <Menu
-        id='mode-menu'
-        anchorEl={modeMenu}
-        keepMounted
-        open={Boolean(modeMenu)}
-        onClose={() => setModeMenu(null)}
-      >
-        {EDIT_MODES.map((mode, index) => (
-          <MenuItem
-            className={styles.modeMenuItem}
-            key={index}
-            onClick={() => handleSelectMode(mode.value)}
-          >
-            <Typography className={styles.modeMenuItemText}>
-              {mode.name}
-            </Typography>
-            {mode.value === editMode && <CheckIcon />}
-          </MenuItem>
-        ))}
-      </Menu>
-    </>
+    <div className={styles.wrapperFab}>
+      {EDIT_MODES.map((mode, index) => (
+        <Fab
+          className={styles.fabItem}
+          color={editMode === mode.value ? 'secondary' : 'primary'}
+          aria-controls='mode-menu'
+          size='small'
+          onClick={() => setEditMode(mode.value)}
+          key={index}
+        >
+          <img className={styles.imageIcon} src={mode.icon} />
+        </Fab>
+      ))}
+    </div>
   )
 }

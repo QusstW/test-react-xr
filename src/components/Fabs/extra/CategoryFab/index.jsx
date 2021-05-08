@@ -1,9 +1,7 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from 'react'
-import { Fab, Menu, MenuItem, Typography } from '@material-ui/core'
-import {
-  Category as CategoryIcon,
-  Check as CheckIcon
-} from '@material-ui/icons'
+import { Fab } from '@material-ui/core'
+
 import { makeStyles } from '@material-ui/core/styles'
 
 import { CATEGORIES } from '../../../../constants'
@@ -12,16 +10,20 @@ import { useComputer } from '../../../../hooks'
 import ElementsModal from './ElementsModal'
 
 const useStyles = makeStyles((theme) => ({
-  categoryFab: {
+  wrapperFab: {
     position: 'absolute',
-    bottom: theme.spacing(3),
-    right: theme.spacing(3)
+    display: 'flex',
+    flexDirection: 'column',
+    bottom: theme.spacing(2),
+    left: theme.spacing(2)
   },
-  categoryMenuItem: {
-    justifyContent: 'space-between'
+  fabItem: {
+    textAlign: 'center',
+    marginTop: theme.spacing(2)
   },
-  categoryMenuItemText: {
-    marginRight: theme.spacing(1)
+  imageIcon: {
+    width: '22px',
+    height: 'auto'
   }
 }))
 
@@ -66,7 +68,30 @@ export default function CategoryFab() {
 
   return (
     <>
-      <Fab
+      <div className={styles.wrapperFab}>
+        {CATEGORIES.map((c, index) => (
+          <Fab
+            className={styles.fabItem}
+            size='small'
+            key={index}
+            onClick={() => handleSelectCategory(c.id)}
+            color={searchType(c.id) ? 'secondary' : 'primary'}
+          >
+            <img className={styles.imageIcon} src={c.icon} />
+          </Fab>
+        ))}
+      </div>
+      <ElementsModal
+        isOpen={elementsModal}
+        onClose={handleCloseModal}
+        hasBox={hasBoxMode}
+        selectedCategory={selectedCategory}
+      />
+    </>
+  )
+}
+/**
+ * <Fab
         className={styles.categoryFab}
         color='primary'
         aria-controls='elements-menu'
@@ -100,6 +125,4 @@ export default function CategoryFab() {
         hasBox={hasBoxMode}
         selectedCategory={selectedCategory}
       />
-    </>
-  )
-}
+ */

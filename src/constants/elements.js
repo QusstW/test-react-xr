@@ -8,8 +8,16 @@ const elements = [
       object: './assets/models/MotherBoard.glb',
       scale: 5
     },
-    willMount: [],
-    willUnmount: []
+    args: {
+      processor: {
+        socket: 123
+      },
+      videocard: {
+        port: 'pci-e-3'
+      }
+    },
+    beforeMount: [],
+    beforeDelete: ['processor', 'videocard']
   },
   {
     id: 2,
@@ -20,8 +28,11 @@ const elements = [
       object: './assets/models/rtx2080ti.glb',
       scale: 5
     },
-    willMount: [],
-    willUnmount: []
+    args: {
+      port: 'pci-e-3'
+    },
+    beforeMount: ['mother'],
+    beforeDelete: []
   },
   {
     id: 3,
@@ -32,8 +43,11 @@ const elements = [
       object: './assets/models/Processor.glb',
       scale: 5
     },
-    willMount: [],
-    willUnmount: []
+    args: {
+      socket: 1234
+    },
+    beforeMount: ['mother'],
+    beforeDelete: []
   },
   {
     id: 4,
@@ -44,8 +58,9 @@ const elements = [
       object: './assets/models/SSD.glb',
       scale: 5
     },
-    willMount: [],
-    willUnmount: []
+    args: {},
+    beforeMount: [],
+    beforeDelete: []
   },
   {
     id: 5,
@@ -55,7 +70,10 @@ const elements = [
     data: {
       object: './assets/models/MotherBoards_NEXTZ.glb',
       scale: 5
-    }
+    },
+    args: {},
+    beforeMount: [],
+    beforeDelete: []
   }
 ]
 

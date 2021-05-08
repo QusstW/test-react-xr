@@ -1,4 +1,5 @@
 import React, { createRef } from 'react'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import { SnackbarProvider } from 'notistack'
 import { IconButton } from '@material-ui/core'
 import { Close as CloseIcon } from '@material-ui/icons'
@@ -13,22 +14,35 @@ export default function App() {
     notistackRef.current.closeSnackbar(key)
   }
 
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#004d40'
+      },
+      secondary: {
+        main: '#ad1457'
+      }
+    }
+  })
+
   return (
-    <SnackbarProvider
-      maxSnack={3}
-      ref={notistackRef}
-      action={(key) => (
-        <IconButton color='inherit' onClick={onSnackDismiss(key)}>
-          <CloseIcon />
-        </IconButton>
-      )}
-    >
-      <ComputerProvider>
-        <Navbar />
-        <Scene />
-        <Fabs />
-        <ModeSlider />
-      </ComputerProvider>
-    </SnackbarProvider>
+    <ThemeProvider theme={theme}>
+      <SnackbarProvider
+        maxSnack={3}
+        ref={notistackRef}
+        action={(key) => (
+          <IconButton color='inherit' onClick={onSnackDismiss(key)}>
+            <CloseIcon />
+          </IconButton>
+        )}
+      >
+        <ComputerProvider>
+          <Navbar />
+          <Scene />
+          <Fabs />
+          <ModeSlider />
+        </ComputerProvider>
+      </SnackbarProvider>
+    </ThemeProvider>
   )
 }

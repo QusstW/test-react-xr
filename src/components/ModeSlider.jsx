@@ -7,9 +7,9 @@ import { useComputer } from '../hooks'
 const useStyles = makeStyles((theme) => ({
   slider: {
     position: 'absolute',
-    top: theme.spacing(9),
-    bottom: theme.spacing(4),
-    left: theme.spacing(2)
+    bottom: theme.spacing(1),
+    left: theme.spacing(11),
+    right: theme.spacing(11)
   }
 }))
 
@@ -26,7 +26,6 @@ export default function ModeSlider() {
     return (
       <div className={styles.slider}>
         <Slider
-          orientation='vertical'
           value={editModeValue}
           onChange={handleEditModeValue}
           defaultValue={0}
