@@ -52,7 +52,6 @@ export default function CategoryFab() {
    */
 
   const handleSelectCategory = (category) => {
-    setCategoryMenu(null)
     setSelectedCategory(category)
     setElementsModal(true)
   }
