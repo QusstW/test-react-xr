@@ -61,16 +61,20 @@ export default function ComputerProvider(props) {
         const key = beforeDelete[i]
         const obj = getElementByType(key)
         if (obj) {
-          enqueueSnackbar(`Вначале нужно удалить ${key}`, {
-            variant: 'error'
+          NOTIFY({
+            enqueueSnackbar,
+            key: 'UNMOUNT_EL_NOT_FOUND',
+            value: key
           })
           return
         }
       }
 
       setElements(elements.filter((id) => id !== elementId))
-      enqueueSnackbar(`Объект ${element.name} успешно удален`, {
-        variant: 'success'
+      NOTIFY({
+        enqueueSnackbar,
+        key: 'DELETION_SUCCESSFUL',
+        value: element.name
       })
     } else {
       for (let i = 0; i < beforeMount.length; i++) {
@@ -118,16 +122,29 @@ export default function ComputerProvider(props) {
         output = output.filter((id) => id !== selectedId)
       }
       setElements([...output, elementId])
-      enqueueSnackbar(`Объект ${element.name} успешно добавлен`, {
-        variant: 'success'
+      NOTIFY({
+        enqueueSnackbar,
+        key: 'ADDED_SECCESSFUL',
+        value: element.name
       })
     }
   }
 
   const handleSetBox = (boxId) => {
-    enqueueSnackbar(!box ? `Корпус успешно выбран` : 'Корпус успешно сменен', {
-      variant: 'success'
-    })
+    if (!box) {
+      NOTIFY({
+        enqueueSnackbar,
+        key: 'CASE_SUCCESSFUL_CHOOSEN'
+      })
+    } else {
+      NOTIFY({
+        enqueueSnackbar,
+        key: 'CASE_SUCCESSFUL_CHANGED'
+      })
+    }
+    // enqueueSnackbar(!box ? `Корпус успешно выбран` : 'Корпус успешно сменен', {
+    //   variant: 'success'
+    // })
     setBox(boxId)
   }
 
@@ -199,9 +216,13 @@ export default function ComputerProvider(props) {
     }
 
     if (value === CATEGORIES.length + 1) {
-      enqueueSnackbar(`Поздавляем, компъютер успешно собран`, {
-        variant: 'success'
+      NOTIFY({
+        enqueueSnackbar,
+        key: 'BUILD_SUCCESSFUL'
       })
+      // enqueueSnackbar(`Поздавляем, компъютер успешно собран`, {
+      //   variant: 'success'
+      // })
     }
 
     return {

@@ -44,7 +44,7 @@ const elements = [
       scale: 5
     },
     args: {
-      socket: 1234
+      socket: 123
     },
     beforeMount: ['mother'],
     beforeDelete: []
