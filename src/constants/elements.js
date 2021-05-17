@@ -109,7 +109,7 @@ const elements = [
     args: {
       power: '600w'
     },
-    beforeMount: ['mother', 'videocard'],
+    beforeMount: ['videocard', 'mother'],
     beforeDelete: []
   },
   {
@@ -124,7 +124,7 @@ const elements = [
     args: {
       power: '750w'
     },
-    beforeMount: ['mother', 'videocard'],
+    beforeMount: ['videocard', 'mother'],
     beforeDelete: []
   },
   {
