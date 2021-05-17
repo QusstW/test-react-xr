@@ -2,77 +2,155 @@ const elements = [
   {
     id: 1,
     type: 'mother',
-    name: 'ASUS-OMG',
-    image: './assets/images/AccessoriesPC/MotherBoard.jpg',
+    name: 'ASUS ROG STRIX B550-A GAMING / SocketAM4',
+    image: './assets/images/AccessoriesPC/mb_asus_strix.jpg',
     data: {
-      object: './assets/models/MotherBoard.glb',
+      object: './assets/models/mb_asus.glb',
       scale: 5
     },
     args: {
       processor: {
-        socket: 123
-      },
-      videocard: {
-        port: 'pci-e-3'
+        socket: 'SocketAM4'
       }
     },
     beforeMount: [],
-    beforeDelete: ['processor', 'videocard']
+    beforeDelete: ['processor', 'videocard', 'powerSupply', 'ssd']
   },
   {
     id: 2,
-    type: 'videocard',
-    name: 'Nvidea GTX-2070',
-    image: './assets/images/AccessoriesPC/VideoCard.jpg',
+    type: 'mother',
+    name: 'NZXT N7 Z490 Intel Z490 / LGA1200',
+    image: './assets/images/AccessoriesPC/mb_nzxt.jpg',
     data: {
-      object: './assets/models/rtx2080ti.glb',
+      object: './assets/models/mb_nzxt.glb',
       scale: 5
     },
     args: {
-      port: 'pci-e-3'
+      processor: {
+        socket: 'LGA-1200'
+      }
     },
-    beforeMount: ['mother'],
+    beforeMount: [],
     beforeDelete: []
   },
   {
     id: 3,
-    type: 'processor',
-    name: 'intelCore i-5',
-    image: './assets/images/AccessoriesPC/Processor.jpeg',
+    type: 'videocard',
+    name: 'Nvidea RTX-2080',
+    image: './assets/images/AccessoriesPC/videocard_rtx2080.jpeg',
     data: {
-      object: './assets/models/Processor.glb',
+      object: './assets/models/videocard_rtx2080.glb',
       scale: 5
     },
     args: {
-      socket: 123
+      powerSupply: {
+        power: '600w'
+      }
     },
     beforeMount: ['mother'],
     beforeDelete: []
   },
   {
     id: 4,
-    type: 'powerSupply',
-    name: 'VX PLUS-700',
-    image: './assets/images/AccessoriesPC/PowerSupy.jpg',
+    type: 'videocard',
+    name: 'Nvidea RTX-3080',
+    image: './assets/images/AccessoriesPC/videocard_rtx3080.png',
     data: {
-      object: './assets/models/SSD.glb',
+      object: './assets/models/videocard_rtx3080.glb',
       scale: 5
     },
-    args: {},
-    beforeMount: [],
+    args: {
+      powerSupply: {
+        power: '750w'
+      }
+    },
+    beforeMount: ['mother'],
     beforeDelete: []
   },
   {
     id: 5,
-    type: 'mother',
-    name: 'NEXTZ',
-    image: './assets/images/AccessoriesPC/MotherBoard.jpg',
+    type: 'processor',
+    name: 'INTEL Core i3 10100F, LGA 1200',
+    image: './assets/images/AccessoriesPC/processor_lga1200.jpg',
     data: {
-      object: './assets/models/MotherBoards_NEXTZ.glb',
+      object: './assets/models/processor.glb',
+      scale: 5
+    },
+    args: {
+      socket: 'LGA-1200'
+    },
+    beforeMount: ['mother'],
+    beforeDelete: []
+  },
+  {
+    id: 6,
+    type: 'processor',
+    name: 'AMD Ryzen 7 3700X, SocketAM4',
+    image: './assets/images/AccessoriesPC/processor_soketAM4.jpg',
+    data: {
+      object: './assets/models/processor.glb',
+      scale: 5
+    },
+    args: {
+      socket: 'SocketAM4'
+    },
+    beforeMount: ['mother'],
+    beforeDelete: []
+  },
+  {
+    id: 7,
+    type: 'powerSupply',
+    name: 'AEROCOOL VX PLUS 600W / 600Вт',
+    image: './assets/images/AccessoriesPC/powerSupply_600w.jpg',
+    data: {
+      object: './assets/models/power_supply_one.glb',
+      scale: 5
+    },
+    args: {
+      power: '600w'
+    },
+    beforeMount: ['mother', 'videocard'],
+    beforeDelete: []
+  },
+  {
+    id: 8,
+    type: 'powerSupply',
+    name: 'COOLER MASTER V Gold V2 WHITE CASE / 750Вт',
+    image: './assets/images/AccessoriesPC/powerSupply_750w.jpg',
+    data: {
+      object: './assets/models/power_supply_two.glb',
+      scale: 5
+    },
+    args: {
+      power: '750w'
+    },
+    beforeMount: ['mother', 'videocard'],
+    beforeDelete: []
+  },
+  {
+    id: 9,
+    type: 'ssd',
+    name: 'SAMSUNG 870 EVO MZ-77E250BW 250ГБ',
+    image: './assets/images/AccessoriesPC/ssd_samsung.jpg',
+    data: {
+      object: './assets/models/ssd_samsung.glb',
       scale: 5
     },
     args: {},
-    beforeMount: [],
+    beforeMount: ['mother'],
+    beforeDelete: []
+  },
+  {
+    id: 10,
+    type: 'ssd',
+    name: 'KINGSTON A400 SA400S37/480G 480ГБ',
+    image: './assets/images/AccessoriesPC/ssd_kingston.jpg',
+    data: {
+      object: './assets/models/ssd_kingstone.glb',
+      scale: 5
+    },
+    args: {},
+    beforeMount: ['mother'],
     beforeDelete: []
   }
 ]

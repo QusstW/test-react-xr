@@ -18,6 +18,7 @@ export default function ComputerProvider(props) {
   const { enqueueSnackbar } = useSnackbar()
 
   const [box, setBox] = useState(null)
+  const [boxOpen, setBoxOpen] = useState(true)
   const [elements, setElements] = useState([])
   const [editMode, setEditMode] = useState(null)
 
@@ -142,9 +143,6 @@ export default function ComputerProvider(props) {
         key: 'CASE_SUCCESSFUL_CHANGED'
       })
     }
-    // enqueueSnackbar(!box ? `Корпус успешно выбран` : 'Корпус успешно сменен', {
-    //   variant: 'success'
-    // })
     setBox(boxId)
   }
 
@@ -157,7 +155,6 @@ export default function ComputerProvider(props) {
     if (box) {
       return BOXES.find((b) => box === b.id)
     }
-
     return null
   }, [box])
 
@@ -245,6 +242,8 @@ export default function ComputerProvider(props) {
         box,
         selectedBox,
         setBox: handleSetBox,
+        boxOpen,
+        setBoxOpen,
         //
         editMode,
         setEditMode,

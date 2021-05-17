@@ -11,7 +11,8 @@ export default function Computer({
   onComputerPress,
   box,
   elements,
-  hasDragMode
+  hasDragMode,
+  boxOpen
 }) {
   const { position } = computerProps
   const bind = useCustomDrag({
@@ -25,7 +26,7 @@ export default function Computer({
     <>
       <group {...computerProps} {...bind()}>
         <group position={[-0.001, -0.001, -0.001]}>
-          <ComputerBox onClick={onComputerPress} box={box} />
+          <ComputerBox onClick={onComputerPress} box={box} boxOpen={boxOpen} />
           {elements.map((el) => (
             <ComputerElement element={el} key={`element-${el.id}`} />
           ))}

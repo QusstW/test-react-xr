@@ -33,7 +33,7 @@ export default function CategoryFab() {
   const { searchType } = useComputer()
 
   // ELEMENTS MODAL
-  const [categoryMenu, setCategoryMenu] = useState()
+
   const [elementsModal, setElementsModal] = useState(false)
   const [hasBoxMode, setBoxMode] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState(null)

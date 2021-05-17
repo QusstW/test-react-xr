@@ -1,12 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from 'react'
-import { Fab, Menu, MenuItem, Typography } from '@material-ui/core'
-import {
-  TouchApp as TouchAppIcon,
-  Check as CheckIcon
-} from '@material-ui/icons'
+import React from 'react'
+import { Fab } from '@material-ui/core'
+
 import { makeStyles } from '@material-ui/core/styles'
-import Icon from '@material-ui/core/Icon'
 
 import { EDIT_MODES } from '../../../constants'
 

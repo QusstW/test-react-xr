@@ -22,6 +22,12 @@ const categories = [
     name: 'Блоки питания',
     icon: './assets/icons/accoriesIcons/powerSupply.svg',
     required: ['mother', 'videocard']
+  },
+  {
+    id: 'ssd',
+    name: 'Твёрдотельные накопители',
+    icon: './assets/icons/accoriesIcons/ssd.svg',
+    required: []
   }
 ]
 

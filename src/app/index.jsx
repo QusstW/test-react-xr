@@ -5,6 +5,7 @@ import { IconButton } from '@material-ui/core'
 import { Close as CloseIcon } from '@material-ui/icons'
 
 import { ComputerProvider } from '../providers'
+
 import { Fabs, ModeSlider, Navbar } from '../components'
 import Scene from './scene'
 
@@ -17,7 +18,7 @@ export default function App() {
   const theme = createMuiTheme({
     palette: {
       primary: {
-        main: '#ff6e40'
+        main: '#222222'
       },
       secondary: {
         main: '#18ffff'

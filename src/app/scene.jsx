@@ -12,14 +12,15 @@ export default function SceneScreen() {
     selectedElements,
     hasDragMode,
     computerProps,
-    setComputerPosition
+    setComputerPosition,
+    boxOpen
   } = useComputer()
 
   return (
     <Canvas id='scene' onCreated={(state) => state.gl.setClearColor('#353535')}>
-      <axesHelper size={20} />
+      {/* <axesHelper size={20} />
       <Grid />
-      <MappingObject {...computerProps} />
+      <MappingObject {...computerProps} /> */}
       <Camera ref={camera} />
       <Light />
       <Computer
@@ -29,6 +30,7 @@ export default function SceneScreen() {
         box={selectedBox}
         onComputerPress={() => {}}
         hasDragMode={hasDragMode}
+        boxOpen={boxOpen}
       />
     </Canvas>
   )
