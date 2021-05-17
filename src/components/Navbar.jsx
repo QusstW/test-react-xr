@@ -9,11 +9,15 @@ const useStyles = makeStyles((theme) => ({
   title: {
     marginRight: 'auto'
   },
+  toolBar: {
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
   progress: {
     marginLeft: theme.spacing(1)
   },
   button: {
-    marginRight: theme.spacing(10)
+    marginLeft: theme.spacing(1)
   }
 }))
 
@@ -29,10 +33,7 @@ const NavMenu = () => {
 
   return (
     <AppBar position='fixed'>
-      <Toolbar variant='dense'>
-        <Typography variant='h6' color='inherit' className={styles.title}>
-          Сборка компьютера AR
-        </Typography>
+      <Toolbar className={styles.toolBar} variant='dense'>
         <Button
           className={styles.button}
           style={
