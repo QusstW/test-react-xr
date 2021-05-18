@@ -17,7 +17,12 @@ export default function SceneScreen() {
   } = useComputer()
 
   return (
-    <Canvas id='scene' onCreated={(state) => state.gl.setClearColor('#353535')}>
+    /**
+     * в канвас
+     * onCreated={(state) => state.gl.setClearColor('#353535')}
+     */
+
+    <Canvas id='scene'>
       {/* <axesHelper size={20} />
       <Grid />
       <MappingObject {...computerProps} /> */}

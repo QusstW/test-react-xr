@@ -5,6 +5,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 // Рендер корпуса компьютера исходя из состояния найденного корпуса
 const AsyncComputerBox = ({ box, onClick }) => {
   const gltf = useLoader(GLTFLoader, box.data.object)
+  console.log(gltf)
   return <primitive object={gltf.scene} scale={[5, 5, 5]} onClick={onClick} />
 }
 
