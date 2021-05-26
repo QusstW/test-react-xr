@@ -20,7 +20,7 @@ export default function ComputerProvider(props) {
   const [box, setBox] = useState(null)
   const [boxOpen, setBoxOpen] = useState(true)
   const [elements, setElements] = useState([])
-  const [editMode, setEditMode] = useState(null)
+  const [editMode, setEditMode] = useState(1)
 
   const [position, setPoistion] = useState([0, 0, 0])
   const [scale, setScale] = useState(1)

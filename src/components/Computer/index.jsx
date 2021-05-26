@@ -1,37 +1,45 @@
 import React from 'react'
+import * as THREE from 'three'
+import { useHitTest } from '@react-three/xr'
 
 import ComputerBox from './extra/ComputerBox'
 import ComputerElement from './extra/ComputerElement'
-
-import useCustomDrag from '../../hooks/useCustomDrag'
+import MappingObject from '../MappingObject'
 
 export default function Computer({
   computerProps,
-  setPosition,
   onComputerPress,
   box,
   elements,
   hasDragMode,
+  setPosition,
   boxOpen
 }) {
-  const { position } = computerProps
-  const bind = useCustomDrag({
-    hasDragMode,
-    usePosition: [position, setPosition]
-  })
-
   // 5, 5, 5
 
+  useHitTest((hit) => {
+    if (!hasDragMode) return
+
+    const position = new THREE.Vector3()
+    const rotation = new THREE.Quaternion()
+    const scale = new THREE.Vector3()
+
+    hit.decompose(position, rotation, scale)
+
+    const { x, y, z } = position
+    if (position) setPosition([x, y, z])
+  })
+
+  if (hasDragMode) {
+    return <MappingObject {...computerProps} />
+  }
+
   return (
-    <>
-      <group {...computerProps} {...bind()}>
-        <group position={[-0.001, -0.001, -0.001]}>
-          <ComputerBox onClick={onComputerPress} box={box} boxOpen={boxOpen} />
-          {elements.map((el) => (
-            <ComputerElement element={el} key={`element-${el.id}`} />
-          ))}
-        </group>
-      </group>
-    </>
+    <group {...computerProps}>
+      <ComputerBox onClick={onComputerPress} box={box} boxOpen={boxOpen} />
+      {elements.map((el) => (
+        <ComputerElement element={el} key={`element-${el.id}`} />
+      ))}
+    </group>
   )
 }

@@ -89,39 +89,3 @@ export default function CategoryFab() {
     </>
   )
 }
-/**
- * <Fab
-        className={styles.categoryFab}
-        color='primary'
-        aria-controls='elements-menu'
-        onClick={(e) => setCategoryMenu(e.currentTarget)}
-      >
-        <CategoryIcon />
-      </Fab>
-      <Menu
-        id='elements-menu'
-        anchorEl={categoryMenu}
-        keepMounted
-        open={Boolean(categoryMenu)}
-        onClose={() => setCategoryMenu(null)}
-      >
-        {CATEGORIES.map((c, index) => (
-          <MenuItem
-            className={styles.categoryMenuItem}
-            key={index}
-            onClick={() => handleSelectCategory(c.id)}
-          >
-            <Typography className={styles.categoryMenuItemText}>
-              {c.name}
-            </Typography>
-            {searchType(c.id) && <CheckIcon />}
-          </MenuItem>
-        ))}
-      </Menu>
-      <ElementsModal
-        isOpen={elementsModal}
-        onClose={handleCloseModal}
-        hasBox={hasBoxMode}
-        selectedCategory={selectedCategory}
-      />
- */

@@ -1,19 +1,21 @@
 import React from 'react'
-import { Canvas, useResource } from 'react-three-fiber'
+import { Canvas } from 'react-three-fiber'
 
-import { Camera, Computer, Light, Grid, MappingObject } from '../components'
+import { ARCanvas } from '@react-three/xr'
+
+import { Camera, Computer, Light, Grid } from '../components'
 import { useComputer } from '../hooks'
 
 export default function SceneScreen() {
-  const camera = useResource()
+  // const camera = useResource()
 
   const {
     selectedBox,
     selectedElements,
     hasDragMode,
     computerProps,
-    setComputerPosition,
-    boxOpen
+    boxOpen,
+    setComputerPosition
   } = useComputer()
 
   return (
@@ -22,21 +24,26 @@ export default function SceneScreen() {
      * onCreated={(state) => state.gl.setClearColor('#353535')}
      */
 
-    <Canvas id='scene'>
-      {/* <axesHelper size={20} />
-      <Grid />
-      <MappingObject {...computerProps} /> */}
-      <Camera ref={camera} />
+    <ARCanvas
+      id='scene'
+      sessionInit={{
+        requiredFeatures: ['hit-test'],
+        optionalFeatures: ['dom-overlay'],
+        domOverlay: { root: document.body }
+      }}
+    >
+      {/* <Camera ref={camera} /> */}
+      {/* <Grid /> */}
       <Light />
       <Computer
         computerProps={computerProps}
-        setPosition={setComputerPosition}
         elements={selectedElements}
         box={selectedBox}
         onComputerPress={() => {}}
         hasDragMode={hasDragMode}
         boxOpen={boxOpen}
+        setPosition={setComputerPosition}
       />
-    </Canvas>
+    </ARCanvas>
   )
 }
