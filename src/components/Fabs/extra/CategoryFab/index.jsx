@@ -30,11 +30,11 @@ const useStyles = makeStyles((theme) => ({
 export default function CategoryFab() {
   const styles = useStyles()
 
-  const { searchType, elementsModal, setElementsModal } = useComputer()
+  const { searchType } = useComputer()
 
   // ELEMENTS MODAL
-  const [categoryMenu, setCategoryMenu] = useState()
-  // const [elementsModal, setElementsModal] = useState(false)
+
+  const [elementsModal, setElementsModal] = useState(false)
   const [hasBoxMode, setBoxMode] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState(null)
 
@@ -55,6 +55,15 @@ export default function CategoryFab() {
     setSelectedCategory(category)
     setElementsModal(true)
   }
+
+  /**
+   * Открывается модальное окно при старте AR-сесии спустя время заданное в setTimeout
+   */
+  useEffect(() => {
+    setTimeout(() => {
+      setElementsModal(true)
+    }, 2e3)
+  }, [])
 
   return (
     <>

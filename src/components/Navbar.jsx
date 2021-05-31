@@ -1,6 +1,6 @@
 import React from 'react'
 // import { Link as RouterLink } from 'react-router-dom'
-import { AppBar, Toolbar, Typography, Chip, Button } from '@material-ui/core'
+import { AppBar, Toolbar, Chip, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { useComputer } from '../hooks'

@@ -1,9 +1,8 @@
 import React from 'react'
-import { Canvas } from 'react-three-fiber'
 
 import { ARCanvas } from '@react-three/xr'
 
-import { Camera, Computer, Light, Grid } from '../components'
+import { Computer, Light } from '../components'
 import { useComputer } from '../hooks'
 
 export default function SceneScreen() {
