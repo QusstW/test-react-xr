@@ -1,16 +1,7 @@
-<<<<<<< HEAD
-import React, { useState } from 'react'
-import { Fab, Menu, MenuItem, Typography } from '@material-ui/core'
-import {
-  Category as CategoryIcon,
-  Check as CheckIcon
-} from '@material-ui/icons'
-=======
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from 'react'
 import { Fab } from '@material-ui/core'
 
->>>>>>> web
 import { makeStyles } from '@material-ui/core/styles'
 
 import { CATEGORIES } from '../../../../constants'
@@ -42,13 +33,8 @@ export default function CategoryFab() {
   const { searchType, elementsModal, setElementsModal } = useComputer()
 
   // ELEMENTS MODAL
-<<<<<<< HEAD
   const [categoryMenu, setCategoryMenu] = useState()
   // const [elementsModal, setElementsModal] = useState(false)
-=======
-
-  const [elementsModal, setElementsModal] = useState(false)
->>>>>>> web
   const [hasBoxMode, setBoxMode] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState(null)
 

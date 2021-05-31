@@ -4,13 +4,7 @@ import { useHitTest } from '@react-three/xr'
 
 import ComputerBox from './extra/ComputerBox'
 import ComputerElement from './extra/ComputerElement'
-<<<<<<< HEAD
-
-import useCustomDrag from '../../hooks/useCustomDrag'
-import { Interactive } from '@react-three/xr'
-=======
 import MappingObject from '../MappingObject'
->>>>>>> web
 
 export default function Computer({
   computerProps,
@@ -41,30 +35,11 @@ export default function Computer({
   }
 
   return (
-<<<<<<< HEAD
-    <>
-      <Interactive
-        onClick={() => {
-          console.log('нажал')
-        }}
-      >
-        <group {...computerProps} {...bind()}>
-          <group position={[-0.001, -0.001, -0.001]}>
-            <ComputerBox onClick={onComputerPress} box={box} />
-            {elements.map((el) => (
-              <ComputerElement element={el} key={`element-${el.id}`} />
-            ))}
-          </group>
-        </group>
-      </Interactive>
-    </>
-=======
     <group {...computerProps}>
       <ComputerBox onClick={onComputerPress} box={box} boxOpen={boxOpen} />
       {elements.map((el) => (
         <ComputerElement element={el} key={`element-${el.id}`} />
       ))}
     </group>
->>>>>>> web
   )
 }
