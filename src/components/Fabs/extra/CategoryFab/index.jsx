@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import React, { useState } from 'react'
 import { Fab, Menu, MenuItem, Typography } from '@material-ui/core'
 import {
   Category as CategoryIcon,
   Check as CheckIcon
 } from '@material-ui/icons'
+=======
+/* eslint-disable jsx-a11y/alt-text */
+import React, { useState, useEffect } from 'react'
+import { Fab } from '@material-ui/core'
+
+>>>>>>> web
 import { makeStyles } from '@material-ui/core/styles'
 
 import { CATEGORIES } from '../../../../constants'
@@ -12,16 +19,20 @@ import { useComputer } from '../../../../hooks'
 import ElementsModal from './ElementsModal'
 
 const useStyles = makeStyles((theme) => ({
-  categoryFab: {
+  wrapperFab: {
     position: 'absolute',
-    bottom: theme.spacing(3),
-    right: theme.spacing(3)
+    display: 'flex',
+    flexDirection: 'column',
+    bottom: theme.spacing(2),
+    left: theme.spacing(2)
   },
-  categoryMenuItem: {
-    justifyContent: 'space-between'
+  fabItem: {
+    textAlign: 'center',
+    marginTop: theme.spacing(2)
   },
-  categoryMenuItemText: {
-    marginRight: theme.spacing(1)
+  imageIcon: {
+    width: '22px',
+    height: 'auto'
   }
 }))
 
@@ -31,8 +42,13 @@ export default function CategoryFab() {
   const { searchType, elementsModal, setElementsModal } = useComputer()
 
   // ELEMENTS MODAL
+<<<<<<< HEAD
   const [categoryMenu, setCategoryMenu] = useState()
   // const [elementsModal, setElementsModal] = useState(false)
+=======
+
+  const [elementsModal, setElementsModal] = useState(false)
+>>>>>>> web
   const [hasBoxMode, setBoxMode] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState(null)
 
@@ -50,41 +66,25 @@ export default function CategoryFab() {
    */
 
   const handleSelectCategory = (category) => {
-    setCategoryMenu(null)
     setSelectedCategory(category)
     setElementsModal(true)
   }
 
   return (
     <>
-      <Fab
-        className={styles.categoryFab}
-        color='primary'
-        aria-controls='elements-menu'
-        onClick={(e) => setCategoryMenu(e.currentTarget)}
-      >
-        <CategoryIcon />
-      </Fab>
-      <Menu
-        id='elements-menu'
-        anchorEl={categoryMenu}
-        keepMounted
-        open={Boolean(categoryMenu)}
-        onClose={() => setCategoryMenu(null)}
-      >
+      <div className={styles.wrapperFab}>
         {CATEGORIES.map((c, index) => (
-          <MenuItem
-            className={styles.categoryMenuItem}
+          <Fab
+            className={styles.fabItem}
+            size='small'
             key={index}
             onClick={() => handleSelectCategory(c.id)}
+            color={searchType(c.id) ? 'secondary' : 'primary'}
           >
-            <Typography className={styles.categoryMenuItemText}>
-              {c.name}
-            </Typography>
-            {searchType(c.id) && <CheckIcon />}
-          </MenuItem>
+            <img className={styles.imageIcon} src={c.icon} />
+          </Fab>
         ))}
-      </Menu>
+      </div>
       <ElementsModal
         isOpen={elementsModal}
         onClose={handleCloseModal}

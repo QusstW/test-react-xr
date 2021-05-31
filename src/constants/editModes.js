@@ -1,27 +1,33 @@
 const editModes = [
   {
     name: 'Просмотор',
-    value: null
+    value: null,
+    icon: './assets/icons/modeIcons/view.svg'
   },
   {
     name: 'Перемещение',
-    value: 1
+    value: 1,
+    icon: './assets/icons/modeIcons/move.svg'
   },
   {
     name: 'Масштабирование',
-    value: 2
+    value: 2,
+    icon: './assets/icons/modeIcons/scale.svg'
   },
   {
     name: 'Поворот по X',
-    value: 3
+    value: 3,
+    icon: './assets/icons/modeIcons/rotateX.svg'
   },
   {
     name: 'Поворот по Y',
-    value: 4
+    value: 4,
+    icon: './assets/icons/modeIcons/rotateY.svg'
   },
   {
     name: 'Поворот по Z',
-    value: 5
+    value: 5,
+    icon: './assets/icons/modeIcons/rotateZ.svg'
   }
 ]
 
