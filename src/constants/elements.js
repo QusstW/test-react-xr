@@ -4,6 +4,7 @@ const elements = [
     type: 'mother',
     name: 'ASUS ROG STRIX B550-A GAMING / SocketAM4',
     image: './assets/images/AccessoriesPC/mb_asus_strix.jpg',
+    price: 15680,
     data: {
       object: './assets/models/mb_asus.glb',
       scale: 5
@@ -21,6 +22,7 @@ const elements = [
     type: 'mother',
     name: 'NZXT N7 Z490 Intel Z490 / LGA1200',
     image: './assets/images/AccessoriesPC/mb_nzxt.jpg',
+    price: 23264,
     data: {
       object: './assets/models/mb_nzxt.glb',
       scale: 5
@@ -38,6 +40,7 @@ const elements = [
     type: 'videocard',
     name: 'Nvidea RTX-2080',
     image: './assets/images/AccessoriesPC/videocard_rtx2080.jpeg',
+    price: 76800,
     data: {
       object: './assets/models/videocard_rtx2080.glb',
       scale: 5
@@ -55,6 +58,7 @@ const elements = [
     type: 'videocard',
     name: 'Nvidea RTX-3080',
     image: './assets/images/AccessoriesPC/videocard_rtx3080.png',
+    price: 238600,
     data: {
       object: './assets/models/videocard_rtx3080.glb',
       scale: 5
@@ -72,6 +76,7 @@ const elements = [
     type: 'processor',
     name: 'INTEL Core i3 10100F, LGA 1200',
     image: './assets/images/AccessoriesPC/processor_lga1200.jpg',
+    price: 10195,
     data: {
       object: './assets/models/processor.glb',
       scale: 5
@@ -87,6 +92,7 @@ const elements = [
     type: 'processor',
     name: 'AMD Ryzen 7 3700X, SocketAM4',
     image: './assets/images/AccessoriesPC/processor_soketAM4.jpg',
+    price: 23590,
     data: {
       object: './assets/models/processor.glb',
       scale: 5
@@ -102,6 +108,7 @@ const elements = [
     type: 'powerSupply',
     name: 'AEROCOOL VX PLUS 600W / 600Вт',
     image: './assets/images/AccessoriesPC/powerSupply_600w.jpg',
+    price: 2300,
     data: {
       object: './assets/models/power_supply_one.glb',
       scale: 5
@@ -117,6 +124,7 @@ const elements = [
     type: 'powerSupply',
     name: 'COOLER MASTER V Gold V2 WHITE CASE / 750Вт',
     image: './assets/images/AccessoriesPC/powerSupply_750w.jpg',
+    price: 9430,
     data: {
       object: './assets/models/power_supply_two.glb',
       scale: 5
@@ -132,6 +140,7 @@ const elements = [
     type: 'ssd',
     name: 'SAMSUNG 870 EVO MZ-77E250BW 250ГБ',
     image: './assets/images/AccessoriesPC/ssd_samsung.jpg',
+    price: 3860,
     data: {
       object: './assets/models/ssd_samsung.glb',
       scale: 5
@@ -145,6 +154,7 @@ const elements = [
     type: 'ssd',
     name: 'KINGSTON A400 SA400S37/480G 480ГБ',
     image: './assets/images/AccessoriesPC/ssd_kingston.jpg',
+    price: 4751,
     data: {
       object: './assets/models/ssd_kingstone.glb',
       scale: 5

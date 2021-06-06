@@ -49,8 +49,7 @@ const NavMenu = () => {
         </Button>
         <Chip
           className={styles.progress}
-          style={{ backgroundColor: progress.color, color: '#fff' }}
-          label={`${progress.value}%`}
+          label={`${progress.value} ₽`}
           size='small'
         />
       </Toolbar>

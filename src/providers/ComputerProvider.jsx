@@ -200,34 +200,20 @@ export default function ComputerProvider(props) {
   const searchType = (type) => selectedElements.find((el) => el.type === type)
 
   const progress = useMemo(() => {
-    let value = 0 // max 6
-    let color = 'red'
+    let currentBox = BOXES.find((e) => e.id === box)
+    console.log(currentBox)
 
-    if (box) value += 1
+    let value = 0
 
-    CATEGORIES.forEach((c) => {
-      if (searchType(c.id)) value += 1
+    if (box) value += currentBox.price
+
+    selectedElements.forEach((e) => {
+      if (selectedElements) {
+        value += e.price
+      }
     })
 
-    if (value) {
-      if (value < CATEGORIES.length + 1) color = 'orange'
-      else color = 'green'
-    }
-
-    if (value === CATEGORIES.length + 1) {
-      NOTIFY({
-        enqueueSnackbar,
-        key: 'BUILD_SUCCESSFUL'
-      })
-      // enqueueSnackbar(`Поздавляем, компъютер успешно собран`, {
-      //   variant: 'success'
-      // })
-    }
-
-    return {
-      color,
-      value: parseInt((value / (CATEGORIES.length + 1)) * 100, 10)
-    }
+    return { value }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [box, elements])
 

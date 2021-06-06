@@ -46,6 +46,7 @@ export default function BoxesList() {
             />
             <CardContent className={styles.titleBox}>
               <Typography variant='body1'>{box.name}</Typography>
+              <Typography variant='body1'>{`${box.price} Руб.`}</Typography>
               {isSelectedBox && <CheckIcon />}
             </CardContent>
           </CardActionArea>

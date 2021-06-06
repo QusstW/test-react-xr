@@ -52,6 +52,7 @@ export default function ElementsList({ selectedCategory = null }) {
             />
             <CardContent className={styles.titleBox}>
               <Typography variant='body1'>{el.name}</Typography>
+              <Typography variant='body1'>{`${el.price} Руб.`}</Typography>
               {isSelectedElement && <CheckIcon />}
             </CardContent>
           </CardActionArea>
